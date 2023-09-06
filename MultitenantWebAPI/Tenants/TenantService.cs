@@ -1,16 +1,21 @@
+using Microsoft.Extensions.Options;
+
 namespace MultitenantWebAPI.Tenants;
 
 public class TenantService
 {
-    private readonly IConfiguration _configuration;
+    private readonly List<Tenant> _tenants;
 
-    public TenantService(IConfiguration configuration)
+    public TenantService
+    (
+        IOptions<List<Tenant>> tenants
+    )
     {
-        _configuration = configuration;
+        _tenants = tenants.Value;
     }
 
     public List<Tenant> GetTenants()
     {
-        return _configuration.GetSection("Tenants").Get<List<Tenant>>();
+        return _tenants;
     }
 }

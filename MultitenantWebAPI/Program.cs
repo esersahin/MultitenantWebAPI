@@ -3,8 +3,9 @@ using MultitenantWebAPI.Databases;
 using MultitenantWebAPI.SwaggerFilters;
 using MultitenantWebAPI.Tenants;
 
-
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<List<Tenant>>(builder.Configuration.GetSection("Tenants"));
 
 // Add services to the container.
 builder.Services.AddHttpContextAccessor();
@@ -28,6 +29,8 @@ builder.Services.AddDbContext<OrdersDbContext>((sp, o) =>
 });
 
 var app = builder.Build();
+
+//var tenants = app.Configuration.GetSection("Tenants").Get<List<Tenant>>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
