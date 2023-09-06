@@ -31,7 +31,7 @@ builder.Services.AddDbContext<OrdersDbContext>((sp, o) =>
 var app = builder.Build();
 
 // if you just need to retrieve a specific section of confifuration data at runtime
-// withoit injecting it, it can be used as in the bottom line 
+// without injecting it, it can be used as in the bottom line 
 //var tenants = app.Configuration.GetSection("Tenants").Get<List<Tenant>>();
 
 // Configure the HTTP request pipeline.
